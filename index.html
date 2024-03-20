@@ -7,32 +7,19 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1 style="text-align: center;">To Do App</h1>
+    <h1 style="text-align: center">To Do App</h1>
     <div class="container">
       <div id="todo-container">
         <div class="header">
-            <h2>To Do</h2>
+          <h2>To Do</h2>
 
-            <div class="plusBtn" id="todo-plusBtn">
-                <div class="plus alt"></div>
-                <div>Add card</div>
-            </div>
+          <div class="plusBtn" id="todo-plusBtn">
+            <div class="plus alt"></div>
+            <div>Add card</div>
+          </div>
         </div>
         <ul id="todo-list" class="todo-list">
           <!-- Todo items will be added here -->
-          <!-- <li class="todo-item">
-            <h4>
-              Workout
-              sdfklhskdjfjksdfkjshdkjfksjdhfdsjfskjdhfkjsdhfksdkjfhksdjhfkjsdhfkjshdkfjhsdkfkjsdkjfhdsk
-            </h4>
-            <p class="description" style="bottom: 1px solid red; width: 90%">
-              kdfhshdkjfhksjdhfkjsdjkfhsdkfhkjsdhkjfhskdjhfkjshdkjfhskdjhfkjdshfkjhsdkfhksdjhfksdhfjs
-            </p>
-            <h4>End Date: 12/2/24</h4>
-            <button class="btn btn-delete">Delete</button>
-            <button class="btn btn-edit">Edit</button>
-            <button class="btn btn-complete">Complete</button>
-          </li> -->
         </ul>
       </div>
       <div id="doing-container">
@@ -48,6 +35,49 @@
         </ul>
       </div>
     </div>
+
+    <section class="modal hidden">
+      <div class="flex">
+        <button class="btn-close">⨉</button>
+        <h2 id="editTaskTitle">Edit Task</h2>
+        <div class="inputfield-container">
+          <input type="editText" id="editTitle" placeholder="Title" />
+          <textarea
+            id="textAreaDescription"
+            style="margin-top: 10px; margin-bottom: 10px"
+            placeholder="Description"
+            name="editDescription"
+            rows="4"
+            cols="50"
+          ></textarea>
+          <input type="date" id="endDate" />
+          <button class="edit-btn">Edit</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal hidden" id="addTaskModal">
+      <div class="flex">
+        <button class="btn-close">⨉</button>
+        <h2 id="editTaskTitle">Add Task</h2>
+        <div class="inputfield-container">
+          <input type="editText" id="addTitle" placeholder="Title" />
+          <textarea
+            id="textAreaDescriptionAdd"
+            style="margin-top: 10px; margin-bottom: 10px"
+            placeholder="Description"
+            name="editDescription"
+            rows="4"
+            cols="50"
+          ></textarea>
+          <input type="date" id="endDateAdd" />
+          <button class="addCard-btn">Add Card</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="overlay hidden"></div>
+
     <script src="script.js"></script>
   </body>
 </html>

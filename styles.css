@@ -50,6 +50,7 @@ body {
   padding: 5px 10px;
   border-radius: 3px;
   margin-left: 5px;
+  margin-bottom: 5px;
 }
 
 .btn:hover {
@@ -110,4 +111,102 @@ body {
   background-position: center;
   background-size: 50% 2px, 2px 50%;
   background-repeat: no-repeat;
+}
+
+.inputfield-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+#textAreaDescription {
+  margin-top: 8px;
+}
+
+#title,
+#endDate {
+  width: 90%;
+}
+
+/* modal styles */
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 450px;
+  padding: 1.3rem;
+  /* max-height: 250px; */
+  position: absolute;
+  z-index: 2;
+  top: 20%;
+  left: calc(100vw / 4);
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  align-self: center;
+}
+
+.modal .flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.modal input {
+  padding: 0.7rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+.modal p {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0.4rem 0 0.2rem;
+}
+
+.edit-btn,
+.addCard-btn {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  font-weight: 700;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+  margin-top: 10px;
+  align-self: center;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-close {
+  /* transform: translate(10px, -20px); */
+  /* border-radius: 50%; */
+  border: none;
+  background-color: white;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
 }
