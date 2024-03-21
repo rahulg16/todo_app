@@ -19,7 +19,7 @@ git clone https://github.com/rahulg16/todo_app.git
 ```
 2. Open the project directory:
 ```bash
-cd todo-app
+cd todo_app
 ```
 3. Open the index.html file in your web browser.
 
