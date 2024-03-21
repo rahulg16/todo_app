@@ -15,7 +15,7 @@ This is a simple todo application built with HTML, CSS, and JavaScript. It allow
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/todo-app.git
+git clone https://github.com/rahulg16/todo_app.git
 ```
 2. Open the project directory:
 ```bash
