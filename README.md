@@ -16,11 +16,11 @@ This is a simple todo application built with HTML, CSS, and JavaScript. It allow
 
 ```bash
 git clone https://github.com/yourusername/todo-app.git
-
+```
 2. Open the project directory:
 ```bash
 cd todo-app
-
+```
 3. Open the index.html file in your web browser.
 
 Usage
