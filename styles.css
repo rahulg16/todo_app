@@ -3,6 +3,7 @@ body {
   background-color: #f4f5f7;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 .container {
@@ -66,6 +67,8 @@ body {
   border-radius: 4px;
   padding: 0px 8px;
   width: calc(100% / 3);
+  overflow: scroll;
+  height: 80vh;
 }
 
 #todo-container {
@@ -141,7 +144,7 @@ body {
   position: absolute;
   z-index: 2;
   top: 20%;
-  left: calc(100vw / 4);
+  left: calc(100vw / 3);
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 15px;
@@ -209,4 +212,8 @@ body {
 
 .hidden {
   display: none;
+}
+
+.priority-container {
+  margin: 14px 0px;
 }

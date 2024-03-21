@@ -21,14 +21,33 @@ const todoList = document.getElementById("todo-list");
 const doingList = document.getElementById("doing-list");
 const doneList = document.getElementById("done-list");
 
-if (!JSON.parse(localStorage.getItem("myTodoList"))) {
-  localStorage.setItem("myTodoList", JSON.stringify([]));
-}
+let todos = [];
 
 // Function to delete a todo
 function deleteTodo(id) {
-  // todos = todos.filter((todo) => todo.id !== id);
-  // renderTodos();
+  todos = todos.filter((todo) => todo.id != id);
+
+  saveTodos();
+  renderTodos();
+}
+
+// Function to sort todo list
+function sortTodosByEndDate() {
+  todos = todos.sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
+
+  saveTodos();
+  renderTodos();
+}
+
+// Function to sort todo list by priority
+function getSelectedPriority() {
+  todos = todos.sort((a, b) => {
+    const priorityOrder = { high: 3, medium: 2, low: 1 };
+    return priorityOrder[b.priority] - priorityOrder[a.priority];
+  });
+
+  saveTodos();
+  renderTodos();
 }
 
 // Function to edit a todo
@@ -37,30 +56,39 @@ function editTodo(e) {
   let title = titleInput.value;
   let description = descriptionInput.value;
   let date = endDateInput.value;
-  let latestTodoList = JSON.parse(localStorage.getItem("myTodoList"));
+  const selectElement = document.getElementById("edit-priority-select");
+  const selectedOption = selectElement.options[selectElement.selectedIndex];
+  const selectedValue = selectedOption.value;
 
-  let modifiedTodos = latestTodoList.map((todo) => {
+  todos = todos.map((todo) => {
     if (todo.id == taskID) {
       return {
         ...todo,
         title: title,
         description: description,
         endDate: date,
+        priority: selectedValue,
       };
     } else return todo;
   });
 
-  localStorage.setItem("myTodoList", JSON.stringify(modifiedTodos));
-
+  saveTodos();
   renderTodos();
   closeModal();
 }
 
+// Function to add a new todo
 function addCard() {
   let title = addTitleInput.value;
   let description = addDescriptionInput.value;
   let date = addEndDateInput.value;
-  let latestTodoList = JSON.parse(localStorage.getItem("myTodoList"));
+  const selectElement = document.getElementById("add-priority-select");
+  const selectedOption = selectElement.options[selectElement.selectedIndex];
+  const selectedValue = selectedOption.value;
+
+  if(title?.length == 0) {
+    title = "Title"
+  }
 
   let todo = {
     id: Date.now(),
@@ -68,19 +96,19 @@ function addCard() {
     description: description,
     endDate: date,
     status: "todo",
+    priority: selectedValue,
   };
 
-  latestTodoList.push(todo);
+  todos.push(todo);
 
-  localStorage.setItem("myTodoList", JSON.stringify(latestTodoList));
+  saveTodos();
   renderTodos();
   closeModal();
 }
 
 // Function to mark a todo as completed
 function completeTodo(id) {
-  let latestTodoList = JSON.parse(localStorage.getItem("myTodoList"));
-  let modifiedTodos = latestTodoList.map((todo) => {
+  todos = todos.map((todo) => {
     if (todo.id == id) {
       return {
         ...todo,
@@ -89,13 +117,13 @@ function completeTodo(id) {
     } else return todo;
   });
 
-  localStorage.setItem("myTodoList", JSON.stringify(modifiedTodos));
+  saveTodos();
   renderTodos();
 }
 
+// Function to mark a todo as active or doing
 function activeTodo(id) {
-  let latestTodoList = JSON.parse(localStorage.getItem("myTodoList"));
-  let modifiedTodos = latestTodoList.map((todo) => {
+  todos = todos.map((todo) => {
     if (todo.id == id) {
       return {
         ...todo,
@@ -104,13 +132,12 @@ function activeTodo(id) {
     } else return todo;
   });
 
-  localStorage.setItem("myTodoList", JSON.stringify(modifiedTodos));
+  saveTodos();
   renderTodos();
 }
 
 // close modal function
 const closeModal = function () {
-  console.log("called");
   modal.classList.add("hidden");
   overlay.classList.add("hidden");
   addTaskModal.classList.add("hidden");
@@ -153,7 +180,9 @@ const openAddTaskModal = () => {
 
   addTitleInput.value = "";
   addDescriptionInput.value = "";
-  addEndDateInput.value = "";
+
+  const currentDate = new Date();
+  addEndDateInput.value = currentDate.toJSON().slice(0, 10);
 };
 
 addCardBtn.addEventListener("click", openAddTaskModal);
@@ -164,7 +193,7 @@ function renderTodos() {
   doingList.innerHTML = "";
   doneList.innerHTML = "";
 
-  let todos = JSON.parse(localStorage.getItem("myTodoList"));
+  loadTodos();
 
   todos.forEach((todo) => {
     const listItem = document.createElement("li");
@@ -202,6 +231,21 @@ function renderTodos() {
 
   const editTaskBtn = document.querySelectorAll(".btn-edit");
   editTaskBtn.forEach((el) => el.addEventListener("click", openModal));
+}
+
+// Function to save todos to localStorage
+function saveTodos() {
+  localStorage.setItem("myTodoList", JSON.stringify(todos));
+}
+
+// Function to load todos from localStorage
+function loadTodos() {
+  const storedTodos = localStorage.getItem("myTodoList");
+  if (storedTodos) {
+    todos = JSON.parse(storedTodos);
+  } else {
+    localStorage.setItem("myTodoList", JSON.stringify([]));
+  }
 }
 
 // Initial rendering of todos

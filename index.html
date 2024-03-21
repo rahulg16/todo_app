@@ -8,6 +8,15 @@
   </head>
   <body>
     <h1 style="text-align: center">To Do App</h1>
+
+    <div style="padding: 0px 20px">
+      <button class="btn btn-sort" onclick="sortTodosByEndDate()">
+        Sort by End Date
+      </button>
+
+      <button class="btn btn-sort" onclick="getSelectedPriority()">Sort by Priority</button>
+    </div>
+
     <div class="container">
       <div id="todo-container">
         <div class="header">
@@ -51,6 +60,14 @@
             cols="50"
           ></textarea>
           <input type="date" id="endDate" />
+          <div class="priority-container">
+            <label for="priority-select">Priority:</label>
+              <select id="edit-priority-select">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+          </div>
           <button class="edit-btn">Edit</button>
         </div>
       </div>
@@ -71,6 +88,14 @@
             cols="50"
           ></textarea>
           <input type="date" id="endDateAdd" />
+          <div class="priority-container">
+            <label for="priority-select">Priority:</label>
+              <select id="add-priority-select">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+          </div>
           <button class="addCard-btn">Add Card</button>
         </div>
       </div>
