@@ -1,4 +1,3 @@
-// Sample todo items for demonstration
 const modal = document.querySelector(".modal");
 const addTaskModal = document.querySelector("#addTaskModal");
 const overlay = document.querySelector(".overlay");
